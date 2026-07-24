@@ -1,0 +1,1759 @@
+{
+  "api": {
+    "name": "CapacitorSupabasePlugin",
+    "slug": "capacitorsupabaseplugin",
+    "docs": "Capacitor Supabase Plugin for native Supabase SDK integration.\n\nThis plugin provides native iOS and Android Supabase SDK functionality\nwith the ability to retrieve JWT tokens for use in JavaScript/web layers.",
+    "tags": [
+      {
+        "text": "0.0.1",
+        "name": "since"
+      }
+    ],
+    "methods": [
+      {
+        "name": "initialize",
+        "signature": "(options: SupabaseConfig) => Promise<void>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "- Configuration options including URL and API key",
+            "type": "SupabaseConfig"
+          }
+        ],
+        "returns": "Promise<void>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options - Configuration options including URL and API key"
+          },
+          {
+            "name": "returns",
+            "text": "Promise that resolves when initialization is complete"
+          },
+          {
+            "name": "throws",
+            "text": "Error if initialization fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nawait CapacitorSupabase.initialize({\n  supabaseUrl: 'https://xyzcompany.supabase.co',\n  supabaseKey: 'your-anon-key'\n});\n```"
+          }
+        ],
+        "docs": "Initialize the Supabase client with your project credentials.\nMust be called before any other methods.",
+        "complexTypes": [
+          "SupabaseConfig"
+        ],
+        "slug": "initialize"
+      },
+      {
+        "name": "signInWithPassword",
+        "signature": "(options: SignInWithPasswordOptions) => Promise<AuthResult>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "- Email and password credentials",
+            "type": "SignInWithPasswordOptions"
+          }
+        ],
+        "returns": "Promise<AuthResult>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options - Email and password credentials"
+          },
+          {
+            "name": "returns",
+            "text": "Promise with session and user data"
+          },
+          {
+            "name": "throws",
+            "text": "Error if sign-in fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nconst { session, user } = await CapacitorSupabase.signInWithPassword({\n  email: 'user@example.com',\n  password: 'password123'\n});\nconsole.log('JWT:', session?.accessToken);\n```"
+          }
+        ],
+        "docs": "Sign in with email and password.",
+        "complexTypes": [
+          "AuthResult",
+          "SignInWithPasswordOptions"
+        ],
+        "slug": "signinwithpassword"
+      },
+      {
+        "name": "signUp",
+        "signature": "(options: SignUpOptions) => Promise<AuthResult>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "- Email, password, and optional user metadata",
+            "type": "SignUpOptions"
+          }
+        ],
+        "returns": "Promise<AuthResult>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options - Email, password, and optional user metadata"
+          },
+          {
+            "name": "returns",
+            "text": "Promise with session and user data"
+          },
+          {
+            "name": "throws",
+            "text": "Error if sign-up fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nconst { session, user } = await CapacitorSupabase.signUp({\n  email: 'newuser@example.com',\n  password: 'password123',\n  data: { name: 'John Doe' }\n});\n```"
+          }
+        ],
+        "docs": "Sign up a new user with email and password.",
+        "complexTypes": [
+          "AuthResult",
+          "SignUpOptions"
+        ],
+        "slug": "signup"
+      },
+      {
+        "name": "signInAnonymously",
+        "signature": "() => Promise<AuthResult>",
+        "parameters": [],
+        "returns": "Promise<AuthResult>",
+        "tags": [
+          {
+            "name": "returns",
+            "text": "Promise with session and user data"
+          },
+          {
+            "name": "throws",
+            "text": "Error if anonymous sign-in fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nconst { session, user } = await CapacitorSupabase.signInAnonymously();\nconsole.log('Anonymous user ID:', user?.id);\n```"
+          }
+        ],
+        "docs": "Sign in anonymously.\nCreates a temporary guest session without requiring credentials.",
+        "complexTypes": [
+          "AuthResult"
+        ],
+        "slug": "signinanonymously"
+      },
+      {
+        "name": "signInWithOAuth",
+        "signature": "(options: SignInWithOAuthOptions) => Promise<void>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "- OAuth provider and optional redirect URL",
+            "type": "SignInWithOAuthOptions"
+          }
+        ],
+        "returns": "Promise<void>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options - OAuth provider and optional redirect URL"
+          },
+          {
+            "name": "returns",
+            "text": "Promise that resolves when OAuth flow is initiated"
+          },
+          {
+            "name": "throws",
+            "text": "Error if OAuth sign-in fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nawait CapacitorSupabase.signInWithOAuth({\n  provider: 'google',\n  redirectTo: 'myapp://callback'\n});\n```"
+          }
+        ],
+        "docs": "Sign in with an OAuth provider.\nOpens the provider's authentication page.",
+        "complexTypes": [
+          "SignInWithOAuthOptions"
+        ],
+        "slug": "signinwithoauth"
+      },
+      {
+        "name": "signInWithOtp",
+        "signature": "(options: SignInWithOtpOptions) => Promise<void>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "- Email or phone number to send OTP to",
+            "type": "SignInWithOtpOptions"
+          }
+        ],
+        "returns": "Promise<void>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options - Email or phone number to send OTP to"
+          },
+          {
+            "name": "returns",
+            "text": "Promise that resolves when OTP is sent"
+          },
+          {
+            "name": "throws",
+            "text": "Error if sending OTP fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nawait CapacitorSupabase.signInWithOtp({\n  email: 'user@example.com'\n});\n\n// Only sign in existing users (rejects for unknown emails):\nawait CapacitorSupabase.signInWithOtp({\n  email: 'user@example.com',\n  shouldCreateUser: false\n});\n```"
+          }
+        ],
+        "docs": "Sign in with OTP (One-Time Password) sent via email or SMS.",
+        "complexTypes": [
+          "SignInWithOtpOptions"
+        ],
+        "slug": "signinwithotp"
+      },
+      {
+        "name": "verifyOtp",
+        "signature": "(options: VerifyOtpOptions) => Promise<AuthResult>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "- Email/phone, token, and verification type",
+            "type": "VerifyOtpOptions"
+          }
+        ],
+        "returns": "Promise<AuthResult>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options - Email/phone, token, and verification type"
+          },
+          {
+            "name": "returns",
+            "text": "Promise with session and user data"
+          },
+          {
+            "name": "throws",
+            "text": "Error if verification fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nconst { session, user } = await CapacitorSupabase.verifyOtp({\n  email: 'user@example.com',\n  token: '123456',\n  type: 'email'\n});\n```"
+          }
+        ],
+        "docs": "Verify an OTP token.",
+        "complexTypes": [
+          "AuthResult",
+          "VerifyOtpOptions"
+        ],
+        "slug": "verifyotp"
+      },
+      {
+        "name": "signOut",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [
+          {
+            "name": "returns",
+            "text": "Promise that resolves when sign-out is complete"
+          },
+          {
+            "name": "throws",
+            "text": "Error if sign-out fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nawait CapacitorSupabase.signOut();\n```"
+          }
+        ],
+        "docs": "Sign out the current user.",
+        "complexTypes": [],
+        "slug": "signout"
+      },
+      {
+        "name": "getSession",
+        "signature": "() => Promise<{ session: Session | null; }>",
+        "parameters": [],
+        "returns": "Promise<{ session: Session | null; }>",
+        "tags": [
+          {
+            "name": "returns",
+            "text": "Promise with the current session or null"
+          },
+          {
+            "name": "throws",
+            "text": "Error if retrieving session fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nconst { session } = await CapacitorSupabase.getSession();\nif (session) {\n  console.log('JWT:', session.accessToken);\n  // Use this token with"
+          },
+          {
+            "name": "supabase",
+            "text": "/supabase-js\n}\n```"
+          }
+        ],
+        "docs": "Get the current session if one exists.\nReturns the session with JWT access token.",
+        "complexTypes": [
+          "Session"
+        ],
+        "slug": "getsession"
+      },
+      {
+        "name": "refreshSession",
+        "signature": "() => Promise<{ session: Session | null; }>",
+        "parameters": [],
+        "returns": "Promise<{ session: Session | null; }>",
+        "tags": [
+          {
+            "name": "returns",
+            "text": "Promise with the refreshed session"
+          },
+          {
+            "name": "throws",
+            "text": "Error if refresh fails or no session exists"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nconst { session } = await CapacitorSupabase.refreshSession();\nconsole.log('New JWT:', session?.accessToken);\n```"
+          }
+        ],
+        "docs": "Refresh the current session and get new tokens.",
+        "complexTypes": [
+          "Session"
+        ],
+        "slug": "refreshsession"
+      },
+      {
+        "name": "getUser",
+        "signature": "() => Promise<{ user: User | null; }>",
+        "parameters": [],
+        "returns": "Promise<{ user: User | null; }>",
+        "tags": [
+          {
+            "name": "returns",
+            "text": "Promise with the current user or null"
+          },
+          {
+            "name": "throws",
+            "text": "Error if retrieving user fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nconst { user } = await CapacitorSupabase.getUser();\nif (user) {\n  console.log('User ID:', user.id);\n}\n```"
+          }
+        ],
+        "docs": "Get the currently authenticated user.",
+        "complexTypes": [
+          "User"
+        ],
+        "slug": "getuser"
+      },
+      {
+        "name": "setSession",
+        "signature": "(options: SetSessionOptions) => Promise<{ session: Session | null; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "- Access and refresh tokens",
+            "type": "SetSessionOptions"
+          }
+        ],
+        "returns": "Promise<{ session: Session | null; }>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options - Access and refresh tokens"
+          },
+          {
+            "name": "returns",
+            "text": "Promise with the restored session"
+          },
+          {
+            "name": "throws",
+            "text": "Error if setting session fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nconst { session } = await CapacitorSupabase.setSession({\n  accessToken: 'eyJ...',\n  refreshToken: 'abc123'\n});\n```"
+          }
+        ],
+        "docs": "Set the session manually with access and refresh tokens.\nUseful for restoring a session or integrating with external auth.",
+        "complexTypes": [
+          "Session",
+          "SetSessionOptions"
+        ],
+        "slug": "setsession"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'authStateChange', listenerFunc: (data: AuthStateChange) => void) => Promise<PluginListenerHandle>",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "- Must be 'authStateChange'",
+            "type": "'authStateChange'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "- Callback function for auth state changes",
+            "type": "(data: AuthStateChange) => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "eventName - Must be 'authStateChange'"
+          },
+          {
+            "name": "param",
+            "text": "listenerFunc - Callback function for auth state changes"
+          },
+          {
+            "name": "returns",
+            "text": "Promise with handle to remove the listener"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nconst listener = await CapacitorSupabase.addListener(\n  'authStateChange',\n  ({ event, session }) => {\n    console.log('Auth event:', event);\n    if (session) {\n      console.log('JWT:', session.accessToken);\n    }\n  }\n);\n\n// Later, remove the listener\nlistener.remove();\n```"
+          }
+        ],
+        "docs": "Listen to authentication state changes.",
+        "complexTypes": [
+          "PluginListenerHandle",
+          "AuthStateChange"
+        ],
+        "slug": "addlistenerauthstatechange-"
+      },
+      {
+        "name": "removeAllListeners",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nawait CapacitorSupabase.removeAllListeners();\n```"
+          }
+        ],
+        "docs": "Remove all listeners for auth state changes.",
+        "complexTypes": [],
+        "slug": "removealllisteners"
+      },
+      {
+        "name": "select",
+        "signature": "<T = unknown>(options: SelectOptions) => Promise<QueryResult<T[]>>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "- Query options including table, columns, filters",
+            "type": "SelectOptions"
+          }
+        ],
+        "returns": "Promise<QueryResult<T[]>>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options - Query options including table, columns, filters"
+          },
+          {
+            "name": "returns",
+            "text": "Promise with query results"
+          },
+          {
+            "name": "throws",
+            "text": "Error if query fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nconst { data, error } = await CapacitorSupabase.select({\n  table: 'users',\n  columns: 'id, name, email',\n  filter: { active: true },\n  limit: 10,\n  orderBy: 'created_at',\n  ascending: false\n});\n```"
+          }
+        ],
+        "docs": "Execute a SELECT query on a table.",
+        "complexTypes": [
+          "QueryResult",
+          "T",
+          "SelectOptions"
+        ],
+        "slug": "select"
+      },
+      {
+        "name": "insert",
+        "signature": "<T = unknown>(options: InsertOptions) => Promise<QueryResult<T>>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "- Table name and values to insert",
+            "type": "InsertOptions"
+          }
+        ],
+        "returns": "Promise<QueryResult<T>>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options - Table name and values to insert"
+          },
+          {
+            "name": "returns",
+            "text": "Promise with inserted data"
+          },
+          {
+            "name": "throws",
+            "text": "Error if insert fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nconst { data, error } = await CapacitorSupabase.insert({\n  table: 'posts',\n  values: { title: 'Hello', content: 'World' }\n});\n```"
+          }
+        ],
+        "docs": "Insert data into a table.",
+        "complexTypes": [
+          "QueryResult",
+          "T",
+          "InsertOptions"
+        ],
+        "slug": "insert"
+      },
+      {
+        "name": "update",
+        "signature": "<T = unknown>(options: UpdateOptions) => Promise<QueryResult<T>>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "- Table name, values to update, and filter conditions",
+            "type": "UpdateOptions"
+          }
+        ],
+        "returns": "Promise<QueryResult<T>>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options - Table name, values to update, and filter conditions"
+          },
+          {
+            "name": "returns",
+            "text": "Promise with updated data"
+          },
+          {
+            "name": "throws",
+            "text": "Error if update fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nconst { data, error } = await CapacitorSupabase.update({\n  table: 'posts',\n  values: { title: 'Updated Title' },\n  filter: { id: 1 }\n});\n```"
+          }
+        ],
+        "docs": "Update data in a table.",
+        "complexTypes": [
+          "QueryResult",
+          "T",
+          "UpdateOptions"
+        ],
+        "slug": "update"
+      },
+      {
+        "name": "delete",
+        "signature": "<T = unknown>(options: DeleteOptions) => Promise<QueryResult<T>>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "- Table name and filter conditions",
+            "type": "DeleteOptions"
+          }
+        ],
+        "returns": "Promise<QueryResult<T>>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options - Table name and filter conditions"
+          },
+          {
+            "name": "returns",
+            "text": "Promise with deleted data"
+          },
+          {
+            "name": "throws",
+            "text": "Error if delete fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nconst { data, error } = await CapacitorSupabase.delete({\n  table: 'posts',\n  filter: { id: 1 }\n});\n```"
+          }
+        ],
+        "docs": "Delete data from a table.",
+        "complexTypes": [
+          "QueryResult",
+          "T",
+          "DeleteOptions"
+        ],
+        "slug": "delete"
+      },
+      {
+        "name": "getPluginVersion",
+        "signature": "() => Promise<{ version: string; }>",
+        "parameters": [],
+        "returns": "Promise<{ version: string; }>",
+        "tags": [
+          {
+            "name": "returns",
+            "text": "Promise that resolves with the plugin version"
+          },
+          {
+            "name": "throws",
+            "text": "Error if getting the version fails"
+          },
+          {
+            "name": "since",
+            "text": "0.0.1"
+          },
+          {
+            "name": "example",
+            "text": "```typescript\nconst { version } = await CapacitorSupabase.getPluginVersion();\nconsole.log('Plugin version:', version);\n```"
+          }
+        ],
+        "docs": "Get the native Capacitor plugin version.",
+        "complexTypes": [],
+        "slug": "getpluginversion"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [
+    {
+      "name": "SupabaseConfig",
+      "slug": "supabaseconfig",
+      "docs": "Configuration options for initializing the Supabase client.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "supabaseUrl",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            },
+            {
+              "text": "\"https://xyzcompany.supabase.co\"",
+              "name": "example"
+            }
+          ],
+          "docs": "The Supabase project URL.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "supabaseKey",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The Supabase anonymous/public key.",
+          "complexTypes": [],
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "AuthResult",
+      "slug": "authresult",
+      "docs": "Result of authentication operations that return a session.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "session",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The session if authentication was successful.",
+          "complexTypes": [
+            "Session"
+          ],
+          "type": "Session | null"
+        },
+        {
+          "name": "user",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The authenticated user if successful.",
+          "complexTypes": [
+            "User"
+          ],
+          "type": "User | null"
+        }
+      ]
+    },
+    {
+      "name": "Session",
+      "slug": "session",
+      "docs": "Session object containing authentication tokens.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "accessToken",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The JWT access token. Use this for authenticated API requests.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "refreshToken",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The refresh token for obtaining new access tokens.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "tokenType",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Token type (usually \"bearer\").",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "expiresIn",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Number of seconds until the access token expires.",
+          "complexTypes": [],
+          "type": "number"
+        },
+        {
+          "name": "expiresAt",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Unix timestamp when the token expires.",
+          "complexTypes": [],
+          "type": "number | undefined"
+        },
+        {
+          "name": "user",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The authenticated user.",
+          "complexTypes": [
+            "User"
+          ],
+          "type": "User"
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "slug": "user",
+      "docs": "User object returned from authentication operations.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "id",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Unique identifier for the user.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "email",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "User's email address.",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "phone",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "User's phone number.",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "createdAt",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Timestamp when the user was created.",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "lastSignInAt",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Timestamp when the user last signed in.",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "userMetadata",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "User metadata (custom fields).",
+          "complexTypes": [
+            "Record"
+          ],
+          "type": "Record<string, unknown>"
+        },
+        {
+          "name": "appMetadata",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "App metadata.",
+          "complexTypes": [
+            "Record"
+          ],
+          "type": "Record<string, unknown>"
+        }
+      ]
+    },
+    {
+      "name": "SignInWithPasswordOptions",
+      "slug": "signinwithpasswordoptions",
+      "docs": "Options for email/password sign-in.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "email",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "User's email address.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "password",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "User's password.",
+          "complexTypes": [],
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "SignUpOptions",
+      "slug": "signupoptions",
+      "docs": "Options for email/password sign-up.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "email",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "User's email address.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "password",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "User's password.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Optional user metadata to store with the user.",
+          "complexTypes": [
+            "Record"
+          ],
+          "type": "Record<string, unknown>"
+        }
+      ]
+    },
+    {
+      "name": "SignInWithOAuthOptions",
+      "slug": "signinwithoauthoptions",
+      "docs": "Options for OAuth sign-in.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "provider",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The OAuth provider to use.",
+          "complexTypes": [
+            "OAuthProvider"
+          ],
+          "type": "OAuthProvider"
+        },
+        {
+          "name": "redirectTo",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "URL to redirect to after authentication.",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "scopes",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "OAuth scopes to request.",
+          "complexTypes": [],
+          "type": "string | undefined"
+        }
+      ]
+    },
+    {
+      "name": "SignInWithOtpOptions",
+      "slug": "signinwithotpoptions",
+      "docs": "Options for OTP sign-in.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "email",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "User's email address (required if phone is not provided).",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "phone",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "User's phone number (required if email is not provided).",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "shouldCreateUser",
+          "tags": [
+            {
+              "text": "8.1.1",
+              "name": "since"
+            }
+          ],
+          "docs": "If set to false, this method will not create a new user. Defaults to true.",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        }
+      ]
+    },
+    {
+      "name": "VerifyOtpOptions",
+      "slug": "verifyotpoptions",
+      "docs": "Options for verifying OTP.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "email",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "User's email address (required if phone is not provided).",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "phone",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "User's phone number (required if email is not provided).",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "token",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The OTP token received via email/SMS.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The type of OTP verification.",
+          "complexTypes": [],
+          "type": "'sms' | 'email' | 'magiclink' | 'signup' | 'recovery'"
+        }
+      ]
+    },
+    {
+      "name": "SetSessionOptions",
+      "slug": "setsessionoptions",
+      "docs": "Options for setting a session manually.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "accessToken",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The access token.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "refreshToken",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The refresh token.",
+          "complexTypes": [],
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "PluginListenerHandle",
+      "slug": "pluginlistenerhandle",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "remove",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "() => Promise<void>"
+        }
+      ]
+    },
+    {
+      "name": "AuthStateChange",
+      "slug": "authstatechange",
+      "docs": "Auth state change callback data.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "event",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The type of auth event.",
+          "complexTypes": [
+            "AuthChangeEvent"
+          ],
+          "type": "AuthChangeEvent"
+        },
+        {
+          "name": "session",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The current session (null if signed out).",
+          "complexTypes": [
+            "Session"
+          ],
+          "type": "Session | null"
+        }
+      ]
+    },
+    {
+      "name": "QueryResult",
+      "slug": "queryresult",
+      "docs": "Result of database queries.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "data",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The query result data.",
+          "complexTypes": [
+            "T"
+          ],
+          "type": "T | null"
+        },
+        {
+          "name": "error",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Error message if the query failed.",
+          "complexTypes": [],
+          "type": "string | null"
+        },
+        {
+          "name": "count",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Number of affected rows (for insert/update/delete).",
+          "complexTypes": [],
+          "type": "number | undefined"
+        }
+      ]
+    },
+    {
+      "name": "SelectOptions",
+      "slug": "selectoptions",
+      "docs": "Options for database select queries.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "table",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The table name to query.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "columns",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Columns to select (default: \"*\").",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "filter",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Filter conditions as key-value pairs.",
+          "complexTypes": [
+            "Record"
+          ],
+          "type": "Record<string, unknown>"
+        },
+        {
+          "name": "limit",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Maximum number of rows to return.",
+          "complexTypes": [],
+          "type": "number | undefined"
+        },
+        {
+          "name": "offset",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Number of rows to skip.",
+          "complexTypes": [],
+          "type": "number | undefined"
+        },
+        {
+          "name": "orderBy",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Column to order by.",
+          "complexTypes": [],
+          "type": "string | undefined"
+        },
+        {
+          "name": "ascending",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Order direction.",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "single",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Return a single row instead of an array.",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        }
+      ]
+    },
+    {
+      "name": "InsertOptions",
+      "slug": "insertoptions",
+      "docs": "Options for database insert queries.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "table",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The table name to insert into.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "values",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The data to insert (single object or array of objects).",
+          "complexTypes": [
+            "Record"
+          ],
+          "type": "Record<string, unknown> | Record<string, unknown>[]"
+        }
+      ]
+    },
+    {
+      "name": "UpdateOptions",
+      "slug": "updateoptions",
+      "docs": "Options for database update queries.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "table",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The table name to update.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "values",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The data to update.",
+          "complexTypes": [
+            "Record"
+          ],
+          "type": "Record<string, unknown>"
+        },
+        {
+          "name": "filter",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Filter conditions to match rows to update.",
+          "complexTypes": [
+            "Record"
+          ],
+          "type": "Record<string, unknown>"
+        }
+      ]
+    },
+    {
+      "name": "DeleteOptions",
+      "slug": "deleteoptions",
+      "docs": "Options for database delete queries.",
+      "tags": [
+        {
+          "text": "0.0.1",
+          "name": "since"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "table",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "The table name to delete from.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "filter",
+          "tags": [
+            {
+              "text": "0.0.1",
+              "name": "since"
+            }
+          ],
+          "docs": "Filter conditions to match rows to delete.",
+          "complexTypes": [
+            "Record"
+          ],
+          "type": "Record<string, unknown>"
+        }
+      ]
+    }
+  ],
+  "enums": [],
+  "typeAliases": [
+    {
+      "name": "Record",
+      "slug": "record",
+      "docs": "Construct a type with a set of properties K of type T",
+      "types": [
+        {
+          "text": "{\r\n    [P in K]: T;\r\n}",
+          "complexTypes": [
+            "K",
+            "T"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "OAuthProvider",
+      "slug": "oauthprovider",
+      "docs": "Supported OAuth providers.",
+      "types": [
+        {
+          "text": "'apple'",
+          "complexTypes": []
+        },
+        {
+          "text": "'azure'",
+          "complexTypes": []
+        },
+        {
+          "text": "'bitbucket'",
+          "complexTypes": []
+        },
+        {
+          "text": "'discord'",
+          "complexTypes": []
+        },
+        {
+          "text": "'facebook'",
+          "complexTypes": []
+        },
+        {
+          "text": "'figma'",
+          "complexTypes": []
+        },
+        {
+          "text": "'github'",
+          "complexTypes": []
+        },
+        {
+          "text": "'gitlab'",
+          "complexTypes": []
+        },
+        {
+          "text": "'google'",
+          "complexTypes": []
+        },
+        {
+          "text": "'kakao'",
+          "complexTypes": []
+        },
+        {
+          "text": "'keycloak'",
+          "complexTypes": []
+        },
+        {
+          "text": "'linkedin'",
+          "complexTypes": []
+        },
+        {
+          "text": "'linkedin_oidc'",
+          "complexTypes": []
+        },
+        {
+          "text": "'notion'",
+          "complexTypes": []
+        },
+        {
+          "text": "'slack'",
+          "complexTypes": []
+        },
+        {
+          "text": "'slack_oidc'",
+          "complexTypes": []
+        },
+        {
+          "text": "'spotify'",
+          "complexTypes": []
+        },
+        {
+          "text": "'twitch'",
+          "complexTypes": []
+        },
+        {
+          "text": "'twitter'",
+          "complexTypes": []
+        },
+        {
+          "text": "'workos'",
+          "complexTypes": []
+        },
+        {
+          "text": "'zoom'",
+          "complexTypes": []
+        }
+      ]
+    },
+    {
+      "name": "AuthChangeEvent",
+      "slug": "authchangeevent",
+      "docs": "Auth state change event types.",
+      "types": [
+        {
+          "text": "'INITIAL_SESSION'",
+          "complexTypes": []
+        },
+        {
+          "text": "'SIGNED_IN'",
+          "complexTypes": []
+        },
+        {
+          "text": "'SIGNED_OUT'",
+          "complexTypes": []
+        },
+        {
+          "text": "'TOKEN_REFRESHED'",
+          "complexTypes": []
+        },
+        {
+          "text": "'USER_UPDATED'",
+          "complexTypes": []
+        },
+        {
+          "text": "'PASSWORD_RECOVERY'",
+          "complexTypes": []
+        }
+      ]
+    }
+  ],
+  "pluginConfigs": []
+}
